@@ -2,8 +2,9 @@
   "name": "material-ui-mde",
   "version": "0.0.1",
   "description": "Markdown Editor build on material-ui",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "babel -d lib src",
     "test": "xo"
   },
   "repository": {
