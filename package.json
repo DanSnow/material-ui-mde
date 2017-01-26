@@ -31,7 +31,10 @@
         "always"
       ],
       "object-curly-spacing": "off",
-      "babel/object-curly-spacing": ["error", "never"],
+      "babel/object-curly-spacing": [
+        "error",
+        "never"
+      ],
       "jsx-quotes": [
         "error",
         "prefer-single"
@@ -52,9 +55,6 @@
   },
   "dependencies": {
     "fbjs": "^0.8.8",
-    "material-ui": ">0.16.0",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
     "react-remarkable": "^1.1.1"
   },
   "devDependencies": {
@@ -68,5 +68,10 @@
     "eslint-plugin-babel": "^4.0.1",
     "eslint-plugin-react": "^6.9.0",
     "xo": "^0.17.1"
+  },
+  "peerDependencies": {
+    "material-ui": ">0.16.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   }
 }
