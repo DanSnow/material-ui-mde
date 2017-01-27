@@ -17,6 +17,7 @@
   "author": "DanSnow",
   "license": "MIT",
   "xo": {
+    "esnext": true,
     "semicolon": false,
     "space": true,
     "parser": "babel-eslint",
@@ -31,6 +32,7 @@
         "error",
         "always"
       ],
+      "no-undef": "off",
       "object-curly-spacing": "off",
       "babel/object-curly-spacing": [
         "error",
