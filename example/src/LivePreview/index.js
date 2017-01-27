@@ -22,7 +22,7 @@ class LivePreview extends Component {
 
     return (
       <Card>
-        <CardTitle title='Example for material-ui-mde' />
+        <CardTitle title='Live Preview' />
         <CardText>
           <MarkdownEditor disablePreview onChange={this.handleChange} defaultValue={markdown} />
           <Remarkable source={markdown} />

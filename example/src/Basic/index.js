@@ -14,7 +14,7 @@ MarkdownEditor build on material-ui
 function Basic() {
   return (
     <Card>
-      <CardTitle title='Example for material-ui-mde' />
+      <CardTitle title='Basic Example' />
       <CardText>
         <MarkdownEditor defaultValue={content} />
       </CardText>
