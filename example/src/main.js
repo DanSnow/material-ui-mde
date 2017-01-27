@@ -1,27 +1,53 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import injectTapEvent from 'react-tap-event-plugin'
+import Router from 'react-router/HashRouter'
+import Miss from 'react-router/Miss'
+import Match from 'react-router/Match'
+import Link from 'react-router/Link'
+import Redirect from 'react-router/Redirect'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import Card from 'material-ui/Card/Card'
-import CardTitle from 'material-ui/Card/CardTitle'
-import CardText from 'material-ui/Card/CardText'
-import MarkdownEditor from 'material-ui-mde'
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
 import 'ress'
+
+import Layout from './Layout'
+import Basic from './Basic'
 
 injectTapEvent()
 
-const App = (
+function RedirectToBasic() {
+  return (
+    <Redirect to='/basic' />
+  )
+}
+
+function App() {
+  return (
+    <div>
+      <Drawer open>
+        <MenuItem containerElement={<Link to='/basic' />}>
+          Basic
+        </MenuItem>
+      </Drawer>
+      <Layout>
+        <Match exactly pattern='/' component={RedirectToBasic} />
+        <Match pattern='/basic' component={Basic} />
+        <Miss component={RedirectToBasic} />
+      </Layout>
+    </div>
+  )
+}
+
+const Provider = (
   <MuiThemeProvider>
-    <Card>
-      <CardTitle title='Example for material-ui-mde' />
-      <CardText>
-        <MarkdownEditor />
-      </CardText>
-    </Card>
+    <Router>
+      <App />
+    </Router>
   </MuiThemeProvider>
 )
 
 ReactDOM.render(
-  App,
+  Provider,
   document.getElementById('root')
 )
