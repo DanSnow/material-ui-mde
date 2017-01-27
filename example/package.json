@@ -7,6 +7,7 @@
   "author": "DanSnow",
   "license": "MIT",
   "scripts": {
+    "build": "NODE_ENV='production' webpack",
     "serve": "webpack-dev-server --port 3000"
   },
   "xo": {
