@@ -1,5 +1,7 @@
 const path = require('path')
+const webpack = require('webpack')
 const {
+  addPlugins,
   createConfig,
   customConfig,
   defineConstants,
@@ -32,5 +34,14 @@ module.exports = createConfig([
   env('development', [
     devServer(),
     sourceMaps()
+  ]),
+  env('production', [
+    addPlugins([
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    ])
   ])
 ])
