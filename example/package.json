@@ -1,0 +1,73 @@
+{
+  "name": "material-ui-mde-example",
+  "version": "1.0.0",
+  "description": "Example for material-ui-mde",
+  "main": "index.js",
+  "repository": {},
+  "author": "DanSnow",
+  "license": "MIT",
+  "scripts": {
+    "serve": "webpack-dev-server --port 3000"
+  },
+  "xo": {
+    "semicolon": false,
+    "space": true,
+    "parser": "babel-eslint",
+    "envs": [
+      "browser"
+    ],
+    "extends": [
+      "xo-react"
+    ],
+    "plugins": [
+      "babel"
+    ],
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "object-curly-spacing": "off",
+      "babel/object-curly-spacing": [
+        "error",
+        "never"
+      ],
+      "jsx-quotes": [
+        "error",
+        "prefer-single"
+      ],
+      "import/no-unassigned-import": "off",
+      "react/jsx-closing-bracket-location": [
+        "error",
+        "after-props"
+      ],
+      "react/jsx-space-before-closing": [
+        "error",
+        "always"
+      ],
+      "unicorn/filename-case": "off"
+    },
+    "settings": {
+      "import/resolver": "webpack"
+    },
+    "ignores": [
+      "dist/**"
+    ]
+  },
+  "devDependencies": {
+    "@webpack-blocks/babel6": "^0.3.0",
+    "@webpack-blocks/dev-server2": "^0.4.0-rc",
+    "@webpack-blocks/webpack2": "^0.4.0-rc.2",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^1.16.2",
+    "xo": "^0.17.1"
+  },
+  "dependencies": {
+    "material-ui": "^0.16.7",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-tap-event-plugin": "^2.0.1",
+    "ress": "^1.1.2"
+  }
+}
