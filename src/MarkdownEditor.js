@@ -47,13 +47,13 @@ class MarkdownEditor extends Component {
   }
 
   handleBulleted = () => {
-    const {text} = this.state
-    this.appendText(text ? '\n- ' : '- ')
+    const {value} = this.state
+    this.appendText(value ? '\n- ' : '- ')
   }
 
   handleNumbered = () => {
-    const {text} = this.state
-    this.appendText(text ? '\n1. ' : '1. ')
+    const {value} = this.state
+    this.appendText(value ? '\n1. ' : '1. ')
   }
 
   appendOrWrapText(addText) {
@@ -68,34 +68,34 @@ class MarkdownEditor extends Component {
     wrappedText = wrappedText.substr(0, wrappedText.length / 2)
     const start = this.selectionStart
     const end = this.selectionEnd
-    const {text} = this.state
-    const selectedText = text.substr(start, end)
-    const selectedBefore = text.substr(0, start)
-    const selectedEnd = text.substr(end)
+    const {value} = this.state
+    const selectedText = value.substr(start, end)
+    const selectedBefore = value.substr(0, start)
+    const selectedEnd = value.substr(end)
     this.setState({
-      text: `${selectedBefore}${wrappedText}${selectedText}${wrappedText}${selectedEnd}`
+      value: `${selectedBefore}${wrappedText}${selectedText}${wrappedText}${selectedEnd}`
     }, () => {
       this.moveCursor(end + wrappedText.length)
     })
   }
 
   appendTextAndMoveCursor(appendText) {
-    const {text} = this.state
-    this.setState({text: `${text}${appendText}`}, () => {
+    const {value} = this.state
+    this.setState({value: `${value}${appendText}`}, () => {
       this.moveCursorBack(appendText.length / 2)
     })
   }
 
   appendText(appendText) {
-    const {text} = this.state
-    this.setState({text: `${text}${appendText}`}, () => {
+    const {value} = this.state
+    this.setState({value: `${value}${appendText}`}, () => {
       this.moveCursorBack(0)
     })
   }
 
   moveCursorBack(count) {
-    const {text} = this.state
-    this.moveCursor(text.length - count)
+    const {value} = this.state
+    this.moveCursor(value.length - count)
   }
 
   moveCursor(pos) {
@@ -119,7 +119,7 @@ class MarkdownEditor extends Component {
     const {onChange} = this.props
     const {value} = event.target
     this.setState({
-      text: value
+      value
     })
 
     if (onChange) {
@@ -129,7 +129,7 @@ class MarkdownEditor extends Component {
 
   render() {
     const {hintText, renderMarkdown, rows, previewPlaceHolder, previewStyle} = this.props
-    const {preview, text} = this.state
+    const {preview, value} = this.state
     return (
       <div>
         <Toolbar>
@@ -169,14 +169,14 @@ class MarkdownEditor extends Component {
         {
           preview ? (
             <div style={previewStyle}>
-              {renderMarkdown(text || previewPlaceHolder)}
+              {renderMarkdown(value || previewPlaceHolder)}
             </div>
           ) : (
             <TextField
               ref={this.getTextField}
               onChange={this.handleChange}
               onSelect={this.handleSelect}
-              value={text}
+              value={value}
               multiLine
               rows={rows}
               hintText={hintText}
@@ -189,10 +189,11 @@ class MarkdownEditor extends Component {
 
   state = {
     preview: false,
-    text: ''
+    value: this.props.defaultValue
   }
 
   static propTypes = {
+    defaultValue: PropTypes.string.isRequired,
     hintText: PropTypes.string.isRequired,
     previewPlaceHolder: PropTypes.string.isRequired,
     previewStyle: PropTypes.object,
@@ -202,6 +203,7 @@ class MarkdownEditor extends Component {
   }
 
   static defaultProps = {
+    defaultValue: '',
     hintText: 'Input here',
     previewPlaceHolder: 'Nothing to preview',
     previewStyle: {
