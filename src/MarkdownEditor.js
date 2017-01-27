@@ -163,6 +163,7 @@ class MarkdownEditor extends Component {
 
   renderPreviewButton() {
     const {disablePreview} = this.props
+    const {preview} = this.state
 
     if (disablePreview) {
       return null
