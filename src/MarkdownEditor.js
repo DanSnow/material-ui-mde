@@ -1,5 +1,4 @@
 import React, {PropTypes, Component} from 'react'
-import shallowEqual from 'fbjs/lib/shallowEqual'
 
 import Toolbar from 'material-ui/Toolbar/Toolbar'
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup'
@@ -20,9 +19,33 @@ const renderMarkdown = (text) => {
   )
 }
 
+const defaultActions = [{
+  name: 'blod',
+  action: 'wrap',
+  text: '****',
+  Icon: BoldIcon
+}, {
+  name: 'italic',
+  action: 'wrap',
+  text: '__',
+  Icon: ItalicIcon
+}, {
+  name: 'bullted',
+  action: 'append',
+  text: '- ',
+  Icon: BulletedIcon
+}, {
+  name: 'numbered',
+  action: 'append',
+  text: '1. ',
+  Icon: NumberedIcon
+}]
+
 class MarkdownEditor extends Component {
-  shouldComponentUpdate(_nextProps, nextState) {
-    return !shallowEqual(this.state, nextState)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.actions !== this.props.actions) {
+      this.actions = this.processAction(nextProps.actions)
+    }
   }
 
   handlePreviewToggle = () => {
@@ -38,22 +61,19 @@ class MarkdownEditor extends Component {
     this.selectionEnd = event.target.selectionEnd
   }
 
-  handleBold = () => {
-    this.appendOrWrapText('****')
+  handleWrap = ({text}) => {
+    this.appendOrWrapText(text)
   }
 
-  handleItalic = () => {
-    this.appendOrWrapText('__')
-  }
-
-  handleBulleted = () => {
+  handleAppend = ({text}) => {
     const {value} = this.state
-    this.appendText(value ? '\n- ' : '- ')
+    this.appendOrWrapText(value ? `\n${text}` : text)
   }
 
-  handleNumbered = () => {
-    const {value} = this.state
-    this.appendText(value ? '\n1. ' : '1. ')
+  handleAction = (event) => {
+    const {name} = event.target
+    const action = this.actions[name]
+    action.handler(action)
   }
 
   appendOrWrapText(addText) {
@@ -127,9 +147,23 @@ class MarkdownEditor extends Component {
     }
   }
 
+  processAction() {
+    return defaultActions
+      .concat(this.props.actions)
+      .reduce((actions, {name, text, action, Icon}) => {
+        actions[name] = {
+          name,
+          text,
+          Icon,
+          handler: action === 'wrap' ? this.handleWrap : this.handleAppend
+        }
+        return actions
+      }, {})
+  }
+
   render() {
     const {hintText, renderMarkdown, rows, previewPlaceHolder, previewStyle} = this.props
-    const {preview, value} = this.state
+    const {preview, actions, value} = this.state
     return (
       <div>
         <Toolbar>
@@ -144,26 +178,16 @@ class MarkdownEditor extends Component {
             <ToolbarTitle>
               Markdown Editor
             </ToolbarTitle>
-            <IconButton
-              disabled={preview}
-              onTouchTap={this.handleBold}>
-              <BoldIcon />
-            </IconButton>
-            <IconButton
-              disabled={preview}
-              onTouchTap={this.handleItalic}>
-              <ItalicIcon />
-            </IconButton>
-            <IconButton
-              disabled={preview}
-              onTouchTap={this.handleBulleted}>
-              <BulletedIcon />
-            </IconButton>
-            <IconButton
-              disabled={preview}
-              onTouchTap={this.handleNumbered}>
-              <NumberedIcon />
-            </IconButton>
+            {
+              actions.map((name) => this.actions[name]).map(({name, Icon}) => (
+                <IconButton
+                  key={name}
+                  disabled={preview}
+                  onTouchTap={this.handleAction} >
+                  <Icon />
+                </IconButton>
+              ))
+            }
           </ToolbarGroup>
         </Toolbar>
         {
@@ -187,12 +211,23 @@ class MarkdownEditor extends Component {
     )
   }
 
+  actions = this.generateAction()
+
   state = {
     preview: false,
-    value: this.props.defaultValue
+    value: this.props.defaultValue,
+    actions: defaultActions.concat(this.props.actions).map((config) => config.name)
   }
 
   static propTypes = {
+    actions: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        action: PropTypes.string.isRequired,
+        text: PropTypes.oneOf(['wrap', 'append']).isRequired,
+        Icon: PropTypes.element.isRequired
+      })
+    ).isRequired,
     defaultValue: PropTypes.string.isRequired,
     hintText: PropTypes.string.isRequired,
     previewPlaceHolder: PropTypes.string.isRequired,
@@ -203,6 +238,7 @@ class MarkdownEditor extends Component {
   }
 
   static defaultProps = {
+    actions: [],
     defaultValue: '',
     hintText: 'Input here',
     previewPlaceHolder: 'Nothing to preview',
