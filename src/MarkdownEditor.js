@@ -71,7 +71,7 @@ class MarkdownEditor extends Component {
   }
 
   handleAction = (event) => {
-    const {name} = event.target
+    const {name} = event.currentTarget
     const action = this.actions[name]
     action.handler(action)
   }
@@ -161,27 +161,46 @@ class MarkdownEditor extends Component {
       }, {})
   }
 
+  renderPreviewButton() {
+    const {disablePreview} = this.props
+
+    if (disablePreview) {
+      return null
+    }
+
+    return (
+      <ToolbarGroup firstChild>
+        <FlatButton
+          icon={<EditIcon />}
+          secondary={!preview}
+          label={preview ? 'Preview' : 'Edit'}
+          onTouchTap={this.handlePreviewToggle} />
+      </ToolbarGroup>
+    )
+  }
+
   render() {
-    const {hintText, renderMarkdown, rows, previewPlaceHolder, previewStyle} = this.props
+    const {
+      disablePreview,
+      hintText,
+      renderMarkdown,
+      rows,
+      title,
+      previewPlaceHolder,
+      previewStyle
+    } = this.props
     const {preview, actions, value} = this.state
     return (
       <div>
         <Toolbar>
-          <ToolbarGroup firstChild>
-            <FlatButton
-              icon={<EditIcon />}
-              secondary={!preview}
-              label={preview ? 'Preview' : 'Edit'}
-              onTouchTap={this.handlePreviewToggle} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <ToolbarTitle>
-              Markdown Editor
-            </ToolbarTitle>
+          {this.renderPreviewButton()}
+          <ToolbarGroup lastChild>
+            <ToolbarTitle text={title} />
             {
               actions.map((name) => this.actions[name]).map(({name, Icon}) => (
                 <IconButton
                   key={name}
+                  name={name}
                   disabled={preview}
                   onTouchTap={this.handleAction} >
                   <Icon />
@@ -191,7 +210,7 @@ class MarkdownEditor extends Component {
           </ToolbarGroup>
         </Toolbar>
         {
-          preview ? (
+          !disablePreview && preview ? (
             <div style={previewStyle}>
               {renderMarkdown(value || previewPlaceHolder)}
             </div>
@@ -229,10 +248,12 @@ class MarkdownEditor extends Component {
       })
     ).isRequired,
     defaultValue: PropTypes.string.isRequired,
+    disablePreview: PropTypes.bool.isRequired,
     hintText: PropTypes.string.isRequired,
     previewPlaceHolder: PropTypes.string.isRequired,
     previewStyle: PropTypes.object,
     rows: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     renderMarkdown: PropTypes.func.isRequired
   }
@@ -240,12 +261,14 @@ class MarkdownEditor extends Component {
   static defaultProps = {
     actions: [],
     defaultValue: '',
+    disablePreview: false,
     hintText: 'Input here',
     previewPlaceHolder: 'Nothing to preview',
     previewStyle: {
       height: '15em'
     },
     rows: 10,
+    title: 'Markdown Editor',
     renderMarkdown
   }
 }
