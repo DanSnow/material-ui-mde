@@ -13,6 +13,7 @@ import 'ress'
 
 import Layout from './Layout'
 import Basic from './Basic'
+import LivePreview from './LivePreview'
 
 injectTapEvent()
 
@@ -29,10 +30,14 @@ function App() {
         <MenuItem containerElement={<Link to='/basic' />}>
           Basic
         </MenuItem>
+        <MenuItem containerElement={<Link to='/live-preview' />}>
+          Live Preview
+        </MenuItem>
       </Drawer>
       <Layout>
         <Match exactly pattern='/' component={RedirectToBasic} />
         <Match pattern='/basic' component={Basic} />
+        <Match pattern='/live-preview' component={LivePreview} />
         <Miss component={RedirectToBasic} />
       </Layout>
     </div>
