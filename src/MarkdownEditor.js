@@ -211,7 +211,7 @@ class MarkdownEditor extends Component {
     )
   }
 
-  actions = this.generateAction()
+  actions = this.processAction()
 
   state = {
     preview: false,
