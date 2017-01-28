@@ -89,11 +89,11 @@ class MarkdownEditor extends Component {
     const start = this.selectionStart
     const end = this.selectionEnd
     const {value} = this.state
-    const selectedText = value.substr(start, end)
+    const selectedText = value.substr(start, end - start)
     const selectedBefore = value.substr(0, start)
-    const selectedEnd = value.substr(end)
+    const selectedAfter = value.substr(end)
     this.setState({
-      value: `${selectedBefore}${wrappedText}${selectedText}${wrappedText}${selectedEnd}`
+      value: `${selectedBefore}${wrappedText}${selectedText}${wrappedText}${selectedAfter}`
     }, () => {
       this.moveCursor(end + wrappedText.length)
     })
