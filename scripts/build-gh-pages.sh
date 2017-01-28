@@ -6,5 +6,6 @@ cd .. &&\
 git checkout gh-pages &&\
 cp example/bundle.js . &&\
 git add bundle.js &&\
-git commit -m 'chore: Build'
+git commit -m 'chore: Build' &&\
+git push origin gh-pages
 git co master
