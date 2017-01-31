@@ -4,13 +4,7 @@ import CardTitle from 'material-ui/Card/CardTitle'
 import CardText from 'material-ui/Card/CardText'
 import Remarkable from 'react-remarkable'
 import MarkdownEditor from 'material-ui-mde'
-
-const markdown = `\
-material-ui-mde
-===============
-
-MarkdownEditor build on material-ui
-`
+import markdown from '../default-content'
 
 class LivePreview extends Component {
   handleChange = (markdown) => {
