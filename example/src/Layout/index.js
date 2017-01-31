@@ -4,7 +4,7 @@ const style = {
   paddingLeft: '256px'
 }
 
-function Layout({children}) {
+function Layout ({children}) {
   return (
     <div style={style}>
       {children}

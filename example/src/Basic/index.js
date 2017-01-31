@@ -11,7 +11,7 @@ material-ui-mde
 MarkdownEditor build on material-ui
 `
 
-function Basic() {
+function Basic () {
   return (
     <Card>
       <CardTitle title='Basic Example' />

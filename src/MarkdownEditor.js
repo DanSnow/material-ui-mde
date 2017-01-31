@@ -42,7 +42,7 @@ const defaultActions = [{
 }]
 
 class MarkdownEditor extends Component {
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.actions !== this.props.actions) {
       this.actions = this.processAction(nextProps.actions)
     }
@@ -76,7 +76,7 @@ class MarkdownEditor extends Component {
     action.handler(action)
   }
 
-  appendOrWrapText(addText) {
+  appendOrWrapText (addText) {
     if (this.isSelection()) {
       this.wrapText(addText)
     } else {
@@ -84,7 +84,7 @@ class MarkdownEditor extends Component {
     }
   }
 
-  wrapText(wrappedText) {
+  wrapText (wrappedText) {
     wrappedText = wrappedText.substr(0, wrappedText.length / 2)
     const start = this.selectionStart
     const end = this.selectionEnd
@@ -99,26 +99,26 @@ class MarkdownEditor extends Component {
     })
   }
 
-  appendTextAndMoveCursor(appendText) {
+  appendTextAndMoveCursor (appendText) {
     const {value} = this.state
     this.setState({value: `${value}${appendText}`}, () => {
       this.moveCursorBack(appendText.length / 2)
     })
   }
 
-  appendText(appendText) {
+  appendText (appendText) {
     const {value} = this.state
     this.setState({value: `${value}${appendText}`}, () => {
       this.moveCursorBack(0)
     })
   }
 
-  moveCursorBack(count) {
+  moveCursorBack (count) {
     const {value} = this.state
     this.moveCursor(value.length - count)
   }
 
-  moveCursor(pos) {
+  moveCursor (pos) {
     const {preview} = this.state
     if (preview) {
       return
@@ -128,7 +128,7 @@ class MarkdownEditor extends Component {
     this.textField.focus()
   }
 
-  isSelection() {
+  isSelection () {
     if (typeof this.selectionStart === 'undefined') {
       return false
     }
@@ -147,7 +147,7 @@ class MarkdownEditor extends Component {
     }
   }
 
-  processAction() {
+  processAction () {
     return defaultActions
       .concat(this.props.actions)
       .reduce((actions, {name, text, action, Icon}) => {
@@ -161,7 +161,7 @@ class MarkdownEditor extends Component {
       }, {})
   }
 
-  renderPreviewButton() {
+  renderPreviewButton () {
     const {disablePreview} = this.props
     const {preview} = this.state
 
@@ -180,7 +180,7 @@ class MarkdownEditor extends Component {
     )
   }
 
-  render() {
+  render () {
     const {
       disablePreview,
       hintText,

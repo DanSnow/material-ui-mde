@@ -17,13 +17,13 @@ import LivePreview from './LivePreview'
 
 injectTapEvent()
 
-function RedirectToBasic() {
+function RedirectToBasic () {
   return (
     <Redirect to='/basic' />
   )
 }
 
-function App() {
+function App () {
   return (
     <div>
       <Drawer open>

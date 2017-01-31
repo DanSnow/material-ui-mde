@@ -17,7 +17,7 @@ class LivePreview extends Component {
     this.setState({markdown})
   }
 
-  render() {
+  render () {
     const {markdown} = this.state
 
     return (
