@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV='production' webpack",
-    "serve": "webpack-dev-server --port 3000"
+    "serve": "webpack-dashboard -- webpack-dev-server --port 3000"
   },
   "xo": {
     "semicolon": false,
@@ -61,6 +61,7 @@
     "@webpack-blocks/webpack2": "^0.4.0-rc.2",
     "eslint-import-resolver-webpack": "^0.8.1",
     "webpack": "^2.2.0",
+    "webpack-dashboard": "^0.3.0",
     "webpack-dev-server": "^1.16.2",
     "xo": "^0.17.1"
   },

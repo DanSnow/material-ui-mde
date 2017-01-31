@@ -12,6 +12,7 @@ const {
 } = require('@webpack-blocks/webpack2')
 const babel = require('@webpack-blocks/babel6')
 const devServer = require('@webpack-blocks/dev-server2')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 module.exports = createConfig([
   entryPoint('./src/main.js'),
@@ -33,7 +34,10 @@ module.exports = createConfig([
   }),
   env('development', [
     devServer(),
-    sourceMaps()
+    sourceMaps(),
+    addPlugins([
+      new DashboardPlugin()
+    ])
   ]),
   env('production', [
     addPlugins([
