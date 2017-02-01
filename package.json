@@ -2,9 +2,10 @@
   "name": "material-ui-mde",
   "version": "0.0.1",
   "description": "Markdown Editor build on material-ui",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "xo"
+    "build": "babel -d lib src",
+    "test": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -15,58 +16,30 @@
   },
   "author": "DanSnow",
   "license": "MIT",
-  "xo": {
-    "semicolon": false,
-    "space": true,
-    "parser": "babel-eslint",
-    "extends": [
-      "xo-react"
-    ],
-    "plugins": [
-      "babel"
-    ],
-    "rules": {
-      "arrow-parens": [
-        "error",
-        "always"
-      ],
-      "object-curly-spacing": "off",
-      "babel/object-curly-spacing": ["error", "never"],
-      "jsx-quotes": [
-        "error",
-        "prefer-single"
-      ],
-      "react/jsx-closing-bracket-location": [
-        "error",
-        "after-props"
-      ],
-      "react/jsx-space-before-closing": [
-        "error",
-        "always"
-      ],
-      "unicorn/filename-case": "off"
-    },
-    "ignores": [
-      "lib/**"
-    ]
-  },
   "dependencies": {
     "fbjs": "^0.8.8",
-    "material-ui": ">0.16.0",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
     "react-remarkable": "^1.1.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-1": "^6.22.0",
-    "babel-preset-stage-2": "^6.22.0",
+    "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-config-standard-react": "^4.2.0",
     "eslint-config-xo-react": "^0.10.0",
     "eslint-plugin-babel": "^4.0.1",
+    "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.9.0",
-    "xo": "^0.17.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "eslint-plugin-unicorn": "^1.0.0"
+  },
+  "peerDependencies": {
+    "material-ui": ">0.16.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   }
 }

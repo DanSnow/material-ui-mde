@@ -1,0 +1,5 @@
+example/bundle.js
+example/node_modules/**
+lib/**
+node_modules/**
+scripts/**

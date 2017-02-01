@@ -1,0 +1,30 @@
+{
+  "name": "material-ui-mde-example",
+  "version": "1.0.0",
+  "description": "Example for material-ui-mde",
+  "main": "index.js",
+  "repository": {},
+  "author": "DanSnow",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV='production' webpack",
+    "serve": "webpack-dashboard -- webpack-dev-server --port 3000"
+  },
+  "devDependencies": {
+    "@webpack-blocks/babel6": "^0.3.0",
+    "@webpack-blocks/dev-server2": "^0.4.0-rc",
+    "@webpack-blocks/webpack2": "^0.4.0-rc.2",
+    "webpack": "^2.2.0",
+    "webpack-dashboard": "^0.3.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "material-ui": "^0.16.7",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-remarkable": "^1.1.1",
+    "react-router": "next",
+    "react-tap-event-plugin": "^2.0.1",
+    "ress": "^1.1.2"
+  }
+}
