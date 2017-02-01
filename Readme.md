@@ -1,7 +1,9 @@
 material-ui-mde
 ===============
 
-## Description ##
+[![Greenkeeper badge](https://badges.greenkeeper.io/DanSnow/material-ui-mde.svg)](https://greenkeeper.io/)
+
+## Description #
 
 A Markdown Editor build on [material-ui](material-ui).
 
