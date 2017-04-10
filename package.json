@@ -37,7 +37,7 @@
     "eslint-plugin-unicorn": "^2.1.0"
   },
   "peerDependencies": {
-    "material-ui": ">0.16.0",
+    "material-ui": ">=0.17.3",
     "react": "^15.0.0",
     "react-dom": "^15.0.0"
   }
