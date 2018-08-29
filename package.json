@@ -29,7 +29,7 @@
     "babel-preset-stage-1": "^6.22.0",
     "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
+    "eslint-config-standard-react": "^7.0.0",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.0.0",
