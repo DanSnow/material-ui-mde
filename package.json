@@ -17,7 +17,7 @@
   "author": "DanSnow",
   "license": "MIT",
   "dependencies": {
-    "fbjs": "^0.8.9",
+    "fbjs": "^1.0.0",
     "react-remarkable": "^1.1.1"
   },
   "devDependencies": {
