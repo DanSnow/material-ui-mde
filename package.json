@@ -34,7 +34,7 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-unicorn": "^8.0.0"
+    "eslint-plugin-unicorn": "^8.0.1"
   },
   "peerDependencies": {
     "material-ui": ">0.16.0",
